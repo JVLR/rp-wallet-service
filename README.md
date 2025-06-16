@@ -1,11 +1,11 @@
-# 💸 Wallet Service
+#  Wallet Service
 
-Wallet Service is a backend REST API developed with Java and Spring Boot. It allows wallet management and provides full
+Wallet Service is a backend REST API developed with Java with framework micronaut. It allows wallet management and provides full
 API documentation via Swagger. The system uses PostgreSQL as the database and Docker for containerization.
 
 ---
 
-## 📚 Table of Contents
+##  Table of Contents
 
 - [Tech Stack](#-tech-stack)
 - [Requirements](#-requirements)
@@ -17,20 +17,21 @@ API documentation via Swagger. The system uses PostgreSQL as the database and Do
 
 ---
 
-## 🚀 Tech Stack
+##  Stack
 
 - **Java 21**
-- **Spring Boot**
+- **Micronaut**
 - **PostgreSQL**
 - **Docker & Docker Compose**
 - **Swagger (OpenAPI)**
 - **Maven**
+- **JPA**
 
 ---
 
 ---
 
-## ✅ Requirements
+##  Requirements
 
 Make sure the following tools are installed on your system:
 
@@ -38,16 +39,17 @@ Make sure the following tools are installed on your system:
 - [Maven 3.8+](https://maven.apache.org/)
 - [Docker](https://www.docker.com/)
 - [Git](https://git-scm.com/)
+- [Postman](https://www.postman.com/) (optional, for testing)
 
 ---
 
-## 🛠️ Installation
+## Installation
 
 Clone the repository and navigate into the project directory:
 
 ```bash
-git clone https://github.com/Leonardox7/wallet-service.git
-cd wallet-service
+git https://github.com/JVLR/rp-wallet-service.git
+cd rp-wallet-service
 ```
 
 Install dependencies:
@@ -58,7 +60,7 @@ mvn install
 
 ---
 
-## ▶️ Running the Application
+## ▶ Running the Application
 
 Start the application using Docker Compose:
 
@@ -68,13 +70,13 @@ docker compose up -d
 
 This will spin up:
 
-- The Spring Boot API
+- Micronaut api container
 - A PostgreSQL container
 
 The API will be available at:
 
 ```
-http://localhost:8080/api/wallet-service/v1/wallets
+http://localhost:8080/api/wallet-service/v1/wallets/recpay/
 ```
 
 ---
@@ -93,29 +95,21 @@ It provides full access to all endpoints and their descriptions.
 
 ## 📬 Postman Collection
 
-A Postman collection file (`RcPay.postman_collection.json`) is included at the root of the project.
+A Postman collection file (`wallet_service.postman_collection.json`) is included at the root of the project.
 
 You can import it into [Postman](https://www.postman.com/) to test all available endpoints.
+
+**⚠️ Warning:** Always use the endpoint /login to obtain the token before making any requests.
 
 ---
 
 ## 🧪 Testing
 
-To run unit and integration tests, use:
+To run unit test use:
 
 ```bash
 mvn test
 ```
-
 ---
 
-## 🗄️ Database
-
-📥 Accessing pgAdmin
-URL: http://localhost:16543/login
-
-Email: root@teste.com
-Password: root
-
-🐘 Connecting to PostgreSQL Server
-Password: root
+### Enjoy and contribute to the Wallet Service! If you have any questions or issues, feel free to open an issue on GitHub.
