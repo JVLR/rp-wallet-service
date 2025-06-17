@@ -117,7 +117,6 @@ To run unit test use:
 ```bash
 mvn test
 ```
-
 ---
 
 ### Enjoy and contribute to the Wallet Service! If you have any questions or issues, feel free to open an issue on GitHub.
