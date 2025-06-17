@@ -93,7 +93,7 @@ public class WalletController {
         LocalDateTime startTime = LocalDateTime.parse(startDate, AppConstant.formatteryyyyMMdd);
         LocalDateTime endTime = LocalDateTime.parse(endDate, AppConstant.formatteryyyyMMdd);
 
-        log.info("Requesting historic balance for userId: {} - toDate: {} - between {}:",id, startDate, endDate);
+        log.info("Requesting historic balance for userId: {} - toDate: {} - between {}:", id, startDate, endDate);
 
         return retrievehistoricBalanceService
                 .doExecute(new RetrieveHistoricBalanceRequest(id, startTime, endTime));

@@ -6,7 +6,7 @@ services:
     networks:
       - recargapay
     environment:
-      - POSTGRES_DATABASE=wallet
+      - POSTGRES_DB=wallet
       - POSTGRES_PASSWORD=admin
       - POSTGRES_USER=admin
     volumes:
@@ -22,11 +22,12 @@ services:
     networks:
       - recargapay
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/wallet
-      - SPRING_DATASOURCE_USERNAME=wallet
-      - SPRING_DATASOURCE_PASSWORD=root
+      - DATASOURCES_DEFAULT_URL=jdbc:postgresql://db:5432/wallet
+      - DATASOURCES_DEFAULT_USERNAME=admin
+      - DATASOURCES_DEFAULT_PASSWORD=admin
     volumes:
-      - ./target/wallet-service-1.0.0-SNAPSHOT.jar:/app/app.jar
+      - ./target/wallet-service-1.0.jar:/app/app.jar
+      - ./wait-for-db.sh:/app/wait-for-db.sh
     working_dir: /app
     command: [ "java", "-jar", "app.jar" ]
     ports:

@@ -1,9 +1,9 @@
 package com.wallet.service;
 
 import com.wallet.exception.DataException;
+import com.wallet.model.User;
 import com.wallet.model.dto.CreateUserRequest;
 import com.wallet.model.dto.CreateUserResponse;
-import com.wallet.model.User;
 import com.wallet.repository.UsersRepositoryJpa;
 import com.wallet.repository.entity.UserEntity;
 import jakarta.inject.Singleton;

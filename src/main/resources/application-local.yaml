@@ -24,7 +24,7 @@ logger:
 
 datasources:
   default:
-    url: jdbc:postgresql://db:5432/wallet
+    url: jdbc:postgresql://localhost:5432/wallet
     username: admin
     password: admin
     driver-class-name: org.postgresql.Driver
@@ -39,7 +39,7 @@ jpa:
   default:
     properties:
       hibernate:
-        db_structure_naming_strategy: legacy
+        #db_structure_naming_strategy: legacy
         naming:
           implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
           physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl

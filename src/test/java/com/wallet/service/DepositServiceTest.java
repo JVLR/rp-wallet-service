@@ -51,7 +51,7 @@ class DepositServiceTest {
         depositService.doExecute(request);
 
         // Assert
-        verify(walletService). deposit(walletEntity, amount);
+        verify(walletService).deposit(walletEntity, amount);
         verify(walletsRepositoryJpa).update(walletEntity);
     }
 

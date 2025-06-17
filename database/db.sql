@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS wallet.users
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 
-CREATE INDEX idx_users_document ON users (document);
+CREATE INDEX idx_users_document ON wallet.users (document);
 
 CREATE TABLE IF NOT EXISTS wallet.wallets
 (
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS wallet.wallets
     user_id VARCHAR
 (
     255
-) REFERENCES users
+) REFERENCES wallet.users
 (
     id
 ) ON DELETE CASCADE,
@@ -42,20 +42,20 @@ CREATE TABLE IF NOT EXISTS wallet.wallets
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 
-CREATE INDEX idx_wallets_user_id ON wallets (user_id);
+CREATE INDEX idx_wallets_user_id ON wallet.wallets (user_id);
 
 CREATE TABLE IF NOT EXISTS wallet.historic_balances
 (
     id
-    serial
-    NOT
-    NULL
+    SERIAL
+    PRIMARY
+    KEY
     UNIQUE,
     wallet_id
     VARCHAR
 (
     255
-) REFERENCES wallets
+) REFERENCES wallet.wallets
 (
     id
 ) ON DELETE CASCADE,
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS wallet.historic_balances
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 
-CREATE INDEX idx_historic_balances_wallet_id ON historic_balances (wallet_id);
+CREATE INDEX idx_historic_balances_wallet_id ON wallet.historic_balances (wallet_id);
 
 COMMENT
-ON COLUMN historic_balances.transaction_type IS 'DEPOSIT, WITHDRAW, TRANSFER';
+ON COLUMN wallet.historic_balances.operation IS 'DEPOSIT, WITHDRAW, TRANSFER';

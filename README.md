@@ -1,11 +1,12 @@
-#  Wallet Service
+# Wallet Service
 
-Wallet Service is a backend REST API developed with Java with framework micronaut. It allows wallet management and provides full
+Wallet Service is a backend REST API developed with Java with framework micronaut. It allows wallet management and
+provides full
 API documentation via Swagger. The system uses PostgreSQL as the database and Docker for containerization.
 
 ---
 
-##  Table of Contents
+## Table of Contents
 
 - [Tech Stack](#-tech-stack)
 - [Requirements](#-requirements)
@@ -17,7 +18,7 @@ API documentation via Swagger. The system uses PostgreSQL as the database and Do
 
 ---
 
-##  Stack
+## Stack
 
 - **Java 21**
 - **Micronaut**
@@ -31,7 +32,7 @@ API documentation via Swagger. The system uses PostgreSQL as the database and Do
 
 ---
 
-##  Requirements
+## Requirements
 
 Make sure the following tools are installed on your system:
 
@@ -103,6 +104,12 @@ You can import it into [Postman](https://www.postman.com/) to test all available
 
 ---
 
+##### For running local config VM options:
+
+```yaml
+-Dmicronaut.environments=local
+```
+
 ## 🧪 Testing
 
 To run unit test use:
@@ -110,6 +117,7 @@ To run unit test use:
 ```bash
 mvn test
 ```
+
 ---
 
 ### Enjoy and contribute to the Wallet Service! If you have any questions or issues, feel free to open an issue on GitHub.

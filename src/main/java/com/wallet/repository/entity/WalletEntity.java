@@ -1,8 +1,5 @@
 package com.wallet.repository.entity;
 
-import com.wallet.exception.DataException;
-import com.wallet.model.HistoricBalance;
-import com.wallet.model.OperationType;
 import com.wallet.model.Wallet;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -16,7 +13,6 @@ import jakarta.persistence.Table;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
