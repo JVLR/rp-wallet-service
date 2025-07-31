@@ -1,0 +1,84 @@
+Crie uma suíte de testes unitários e de integração em JUnit 5 para a aplicação de linha de comando (CLI) que calcula imposto de ganho de capital, conforme o desafio do Nubank.
+
+🧪 Regras gerais:
+- Use JUnit 5
+- Use BigDecimal nos testes para comparação com precisão
+- Cada linha de entrada é uma simulação independente
+- As saídas devem ser listas JSON contendo os impostos pagos para cada operação
+
+🧪 Testes unitários esperados:
+
+1. **Compra não gera imposto**
+   - Entrada: [{"operation": "buy", "unit-cost": 10.00, "quantity": 100}]
+   - Saída esperada: [{"tax": 0.0}]
+
+2. **Venda com lucro e valor total maior que R$ 20.000 paga imposto**
+   - Entrada: [{"operation": "buy", "unit-cost": 10.00, "quantity": 10000}, {"operation": "sell", "unit-cost": 20.00, "quantity": 5000}]
+   - Lucro: R$ 50.000 → imposto: R$ 10.000
+   - Saída esperada: [{"tax": 0.0}, {"tax": 10000.0}]
+
+3. **Venda com lucro, mas valor total da venda menor ou igual a R$ 20.000 (isenção)**
+   - Entrada: [{"operation": "buy", "unit-cost": 10.00, "quantity": 100}, {"operation": "sell", "unit-cost": 15.00, "quantity": 50}]
+   - Valor total: R$ 750.00 → isento
+   - Saída esperada: [{"tax": 0.0}, {"tax": 0.0}]
+
+4. **Venda com prejuízo acumula perda**
+   - Entrada: [{"operation": "buy", "unit-cost": 10.00, "quantity": 10000}, {"operation": "sell", "unit-cost": 5.00, "quantity": 5000}]
+   - Prejuízo: R$ 25.000 → imposto: R$ 0.00
+   - Saída esperada: [{"tax": 0.0}, {"tax": 0.0}]
+
+5. **Compensação de prejuízo em venda futura com lucro**
+   - Entrada: [{"operation": "buy", "unit-cost": 10.00, "quantity": 10000},
+              {"operation": "sell", "unit-cost": 5.00, "quantity": 5000},
+              {"operation": "sell", "unit-cost": 20.00, "quantity": 3000}]
+   - Prejuízo acumulado: R$ 25.000
+   - Lucro na 2ª venda: R$ 30.000 → lucro tributável: R$ 5.000 → imposto: R$ 1.000
+   - Saída esperada: [{"tax": 0.0}, {"tax": 0.0}, {"tax": 1000.0}]
+
+6. **Venda com lucro sem prejuízo, mas isenta por valor total ≤ R$ 20.000**
+   - Entrada: [{"operation": "buy", "unit-cost": 10.00, "quantity": 100}, {"operation": "sell", "unit-cost": 15.00, "quantity": 50}]
+   - Valor total da venda: R$ 750.00
+   - Saída esperada: [{"tax": 0.0}, {"tax": 0.0}]
+
+7. **Venda com lucro, após prejuízos já compensados (imposto cheio)**
+   - Entrada:
+     [{"operation": "buy", "unit-cost": 10.00, "quantity": 10000},
+      {"operation": "sell", "unit-cost": 2.00, "quantity": 5000},
+      {"operation": "sell", "unit-cost": 20.00, "quantity": 2000},
+      {"operation": "sell", "unit-cost": 20.00, "quantity": 2000},
+      {"operation": "sell", "unit-cost": 25.00, "quantity": 1000}]
+   - Última venda gera lucro de R$ 15.000 sem mais prejuízo → imposto: R$ 3.000
+   - Saída esperada: [{"tax": 0.0}, {"tax": 0.0}, {"tax": 0.0}, {"tax": 0.0}, {"tax": 3000.0}]
+
+🧪 Testes de integração esperados:
+
+8. **Simulação completa com múltiplas linhas**
+   - Duas linhas de entrada devem ser processadas como simulações separadas, com estados independentes
+   - Entrada:
+     ```
+     [{"operation": "buy", "unit-cost": 10.00, "quantity": 100},
+      {"operation": "sell", "unit-cost": 15.00, "quantity": 50}]
+     
+     [{"operation": "buy", "unit-cost": 10.00, "quantity": 10000},
+      {"operation": "sell", "unit-cost": 20.00, "quantity": 5000}]
+     ```
+   - Saída:
+     ```
+     [{"tax": 0.0}, {"tax": 0.0}]
+     [{"tax": 0.0}, {"tax": 10000.0}]
+     ```
+
+9. **Verificar que cada linha reinicia o estado (compra/venda anteriores não afetam simulações seguintes)**
+
+10. **Teste de precisão com BigDecimal:**
+   - Teste de média ponderada com valores como R$ 20,00 e R$ 10,00 → média esperada: R$ 16.67
+
+Extra:
+11. **Teste com entrada que gera múltiplas vendas seguidas com e sem isenção**
+12. **Teste com operação de venda que utiliza exatamente o restante do prejuízo acumulado**
+
+🧾 Dica:
+- Utilize `assertEquals(new BigDecimal("1000.00"), result.getTax())` para garantir precisão nas comparações.
+- Simule entrada e saída em testes de integração com `ByteArrayInputStream` e `ByteArrayOutputStream`.
+
+Crie essas classes de teste em um diretório `src/test/java`, e organize os testes por cenários distintos.
