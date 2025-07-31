@@ -1,0 +1,84 @@
+Perfeito! Agora que temos o desafio técnico do Nubank (Ganho de Capital) completo, posso te ajudar a criar um prompt altamente eficaz para o Cursor AI (ou outro copiloto de IA), que gere a base do projeto em Java seguindo as exigências descritas no documento.
+
+
+---
+
+✅ Prompt completo e ideal para o Cursor AI
+
+Crie uma aplicação de linha de comando (CLI) em Java 21 que resolva o desafio de "Ganho de Capital" proposto no processo seletivo do Nubank.
+
+### 🧠 Objetivo:
+Implementar um programa que receba listas de operações financeiras (buy/sell) via entrada padrão (stdin) e retorne, via saída padrão (stdout), os impostos devidos com base nas regras de ganho de capital.
+
+### 🎯 Regras principais:
+- A entrada é uma ou mais linhas, cada uma contendo uma lista JSON com operações financeiras (compras ou vendas de ações).
+- Cada operação contém: `operation` (buy ou sell), `unit-cost` (preço unitário), `quantity` (quantidade).
+- A saída deve ser uma lista JSON do mesmo tamanho, com objetos contendo apenas o campo `tax`.
+- Imposto = 20% sobre o lucro apurado em vendas, considerando:
+  - Preço médio ponderado das compras
+  - Prejuízos acumulados de vendas anteriores
+  - Isenção se o total da venda for ≤ R$ 20.000, mesmo que haja lucro
+- Nenhum imposto é cobrado em operações de compra
+- Prejuízos podem ser acumulados e usados para compensar lucros futuros
+
+### 🔧 Requisitos técnicos:
+- Java 21
+- Leitura da entrada via `System.in` (stdin)
+- Escrita da saída via `System.out` (stdout)
+- Cálculo do preço médio ponderado após cada compra
+- Armazenamento em memória do estado da simulação por linha
+- Reinício do estado para cada nova linha da entrada
+- Arredondar impostos para duas casas decimais
+- Usar apenas bibliotecas padrão do Java (ex: `java.util`, `java.math.BigDecimal`, `com.fasterxml.jackson` se necessário)
+
+### ✅ Testes:
+- Criar testes unitários com JUnit 5 para os principais casos do desafio (exemplos: lucro, prejuízo, isenção, compensação de perdas)
+- Pode incluir testes de integração simulando entrada/saída via stream
+
+### 📁 Estrutura esperada:
+- `Main.java` (classe principal com leitura e processamento)
+- `Operation.java` (classe que representa a operação)
+- `CapitalGainCalculator.java` (regra de negócio)
+- `TaxResult.java` (representa a saída)
+- `tests/` (com testes automatizados)
+- `README.md` com instruções de compilação, execução e testes
+- `Dockerfile` e/ou `Makefile` opcionais, se quiser
+
+### 🚫 O que evitar:
+- Não usar frameworks como Spring ou Micronaut
+- Não usar bibliotecas de terceiros além do necessário para JSON
+- Não criar endpoints REST ou GUI
+- Evitar overengineering
+
+Gere a estrutura do projeto e comece pela classe que calcula o imposto (`CapitalGainCalculator`). Depois, me ajude a implementar a leitura da entrada e os testes.
+
+
+---
+
+🧪 Dicas para etapas seguintes:
+
+Depois que o Cursor gerar a estrutura base, você pode continuar com prompts como:
+
+"Implemente a lógica de cálculo da média ponderada e dedução de prejuízo"
+
+"Crie testes para o caso #3 do desafio"
+
+"Implemente a leitura da entrada JSON usando Jackson"
+
+"Gere o README com instruções de execução com java e testes com JUnit 5"
+
+
+
+---
+
+Se quiser, posso:
+
+Gerar diretamente essa estrutura base em Java para você agora mesmo
+
+Te ajudar a escrever os testes com base nos casos do PDF
+
+Validar sua solução, se já tiver começado
+
+
+Deseja seguir por algum desses caminhos?
+
